@@ -1,7 +1,6 @@
 sudo: required
 services: 
   - docker
-  - mongodb
 env:
   - NODE_VERSION: '6'
   - NODE_VERSION: '8'
@@ -21,6 +20,5 @@ install:
     apt-get install -y nodejs;"
 
 script:
-  - node -v
-  - echo "shit"
+  - docker exec -t ubuntu-test bash -c "node -v"
 
