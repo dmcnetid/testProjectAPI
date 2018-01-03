@@ -1,7 +1,6 @@
 sudo: required
 services: 
   - docker
-  - mongodb
 env:
   - NODE_VERSION: '6'
   - NODE_VERSION: '8'
@@ -18,9 +17,8 @@ install:
     curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
     bash nodesource_setup.sh;
     apt-get update;
-    apt-get install -y nodejs;"
+    apt-get install -y nodejs;
+    node -v;"
 
 script:
   - node -v
-  - echo "shit"
-
