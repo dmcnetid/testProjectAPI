@@ -1,5 +1,6 @@
 language: node_js
 sudo: true
+dist: xenial
 node_js:
   - 6
   - 8
@@ -14,3 +15,5 @@ addons:
       - ubuntu-toolchain-r-test
 before_install:
   - apt-get update
+script:
+  - echo 'shit'
