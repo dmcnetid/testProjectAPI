@@ -21,4 +21,4 @@ install:
     node -v;"
 
 script:
-  -node -v
+  - node -v
