@@ -1,19 +1,26 @@
-language: node_js
-sudo: true
-dist: xenial
-node_js:
-  - 6
-  - 8
-matrix:
-  allow_failures:
-    - node_js: 5
+sudo: required
 services: 
+  - docker
   - mongodb
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
+env:
+  - NODE_VERSION: '6'
+  - NODE_VERSION: '8'
+  - NODE_VERSION: '9'
+
 before_install:
-  - apt-get update
+  - docker run -d --name ubuntu-test -v $(pwd):/travis ubuntu:latest tail -f /dev/null
+  - docker ps
+
+install:
+  - docker exec -t ubuntu-test bash -c "apt-get update;
+    apt-get install -y software-properties-common python-software-properties build-essential;
+    add-apt-repository -y ppa:ubuntu-toolchain-r/test;
+    curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+    bash nodesource_setup.sh;
+    apt-get update;
+    apt-get install -y nodejs;"
+
 script:
-  - echo 'shit'
+  - node -v
+  - echo "shit"
+
